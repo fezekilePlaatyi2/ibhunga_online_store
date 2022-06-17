@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import 'bootstrap';
+import '@popperjs/core'
 import App from "./App";
 import "./App.css";
 

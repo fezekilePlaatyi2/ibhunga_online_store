@@ -111,7 +111,19 @@ const Home = (props) => {
       default: {
         return (
           <>
-            Home <button onClick={() => updateComponent("all")}>Shop</button>
+            <div className="hero-part">
+              <div className="text-side">
+                <h1>Welcome to our store</h1>
+                <p>
+                  Ibhunga store is one of the cheapest shop selling a variety of products. You can shop anything from our catalogue, and they will be delivered to you instantly. Delivery time is same day to orders placed before 3pm. 
+                </p>
+                <button type="button" className="main-btn" onClick={() => updateComponent("all")}>Shop Now</button>
+              </div>
+              <div className="img-side">
+                <img src='../assets/img/shop.png' alt="Shopping image" />
+              </div>
+            </div>
+            
           </>
         );
       }

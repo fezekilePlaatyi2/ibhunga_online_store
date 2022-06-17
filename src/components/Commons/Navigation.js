@@ -7,7 +7,7 @@ const Navigation = ({ setComponentDisplay }) => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg" id="navigation_bar">
       <a className="navbar-brand navbar-inverse" href="/">
         IBhunga Store
       </a>
