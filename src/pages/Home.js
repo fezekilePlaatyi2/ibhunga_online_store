@@ -4,6 +4,7 @@ import ProductsHome from "../components/Product/ProductsHome";
 import Product from "../components/Product/Product";
 import Cart from "../components/Cart/Cart";
 import * as qs from "query-string";
+import shoppingImg from "../assets/img/Shopping.svg"
 
 const categories = [
   {
@@ -120,7 +121,7 @@ const Home = (props) => {
                 <button type="button" className="main-btn" onClick={() => updateComponent("all")}>Shop Now</button>
               </div>
               <div className="img-side">
-                <img src='../assets/img/shop.png' alt="Shopping image" />
+                <img src={shoppingImg} alt="Shopping image" />
               </div>
             </div>
             
