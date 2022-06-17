@@ -1,7 +1,7 @@
 :root {
   --primary-color: #FFA500;
   --transition: all 0.65s ease-in-out;
-  --dark-color: #3a3a3a;
+  --dark-color: #1a1a1a;
 }
 
 * {
@@ -13,6 +13,7 @@ button {
   font-size: 16px;
   outline: none;
   border: 1px solid transparent;
+  background-color: transparent;
   border-radius: 50px;
   transition: var(--transition);
 }
@@ -31,9 +32,27 @@ button:hover {
   padding: 1em 3em;
 }
 
-#navigation_bar .navbar-nav .nav-link {
+#navigation_bar .nav-link {
     font-size: 18px;
-    color: var(--dark-color)
+    color: var(--dark-color) !important;
+    cursor: pointer;
+}
+
+#navigation_bar .action-btn {
+  margin-left: 10em;
+}
+
+input {
+  display: block;
+  width: 100%;
+  padding: 0.75em 1em;
+  margin-bottom: 1em;
+  border: 1px solid #f2f2f2;
+  border-radius: 5px;
+}
+
+input::placeholder {
+  color: #b3b3b3;
 }
 
 .product-col {
@@ -67,4 +86,115 @@ button:hover {
 .hero-part p {
   font-size: 18px;
   margin-bottom: 2.5em;
+}
+
+.hero-part .img-side {
+  justify-self: right;
+  text-align: center;
+}
+
+.hero-part .img-side img {
+  width: 50%;
+}
+
+.featured-categories {
+  background-color: var(--dark-color);
+  padding: 6em;
+}
+
+.featured-categories h2 {
+  color: var(--primary-color);
+  font-size: 40px;
+  font-weight: 400;
+}
+
+.featured-categories p {
+  font-size: 18px;
+  color: #b3b3b3;
+  margin-bottom: 2em;
+}
+
+.featured-categories .category-container {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-template-rows: auto;
+  column-gap: 1em;
+}
+
+.featured-categories .category-container .category img {
+  width: 100%;
+  display: block;
+  margin-bottom: 2em;
+  border-radius: 15px;
+}
+
+.featured-categories .category-container .category h3 {
+  font-size: 22px;
+  color: white;
+  margin-bottom: 0.5em;
+}
+
+.featured-categories .category-container .category p {
+  font-size: 14px !important;
+  color: #b3b3b3;
+}
+
+.login-page,
+.signup-page {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2f2f2;
+}
+
+.login-page .form-container,
+.signup-page .form-container {
+  background-color: white;
+  padding: 2em;
+  border-radius: 5px;
+  width: 450px;
+  margin-bottom: 2em;
+}
+
+.login-page .form-container .header-part,
+.signup-page .form-container .header-part {
+  margin-bottom: 3em;
+  text-align: center;
+}
+
+.login-page .form-container .header-part h3,
+.signup-page .form-container .header-part h3 {
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.login-page .form-container .header-part p,
+.signup-page .form-container .header-part p {
+  font-size: 14px;
+  color: #b3b3b3;
+}
+
+.login-page .form-container .main-btn,
+.signup-page .form-container .main-btn {
+  display: block !important;
+  width: 100%;
+}
+
+.login-page .other-links p,
+.signup-page .other-links p {
+  margin-top: 2em;
+  text-align: center !important;
+  margin: 0;
+  font-size: 14px;
+  margin-bottom: 0.5em;
+  color: #b3b3b3;
+}
+
+.login-page .other-links p a,
+.signup-page .other-links p a {
+  color: var(--primary-color)
 }

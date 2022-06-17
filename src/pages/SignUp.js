@@ -21,22 +21,32 @@ const SignUp = () => {
   }
   return (
     <>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-        <label for="email">Email</label>
-        <br></br>
-        <input type="email" name="email" placeholder="Email" />
-        <br></br>
-        <label for="password">Password</label>
-        <br></br>
-        <input type="password" name="password" placeholder="Password" />
-        <br></br>
-        <button type="submit">Submit</button>
-        <br></br>
-      </form>
-      <br></br>
-      <br></br>
-      <a href="/login">Login</a>
+      <div className="signup-page">
+        <div className="content">
+          <div className="form-container">
+          <div className="header-part">
+              <h3>Create Account</h3>
+              <p>Enter your details so you can start placing orders.</p>
+            </div>
+            <form onSubmit={handleSubmit}>
+              <div className="row">
+                <div className="col-sm-12">
+                  <input type="text" name="name" placeholder="Name" />
+                </div>
+                <div className="col-sm-12">
+                <input type="text" name="surname" placeholder="Surname" />
+                </div>
+              </div>
+              <input type="email" name="email" placeholder="Email" />
+              <input type="password" name="password" placeholder="Password" />
+              <button type="submit" className="main-btn">Register</button>
+            </form>
+          </div>
+          <div className="other-links">
+            <p>Already have an account? <a href="/login">Login</a></p>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

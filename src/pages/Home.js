@@ -4,7 +4,8 @@ import ProductsHome from "../components/Product/ProductsHome";
 import Product from "../components/Product/Product";
 import Cart from "../components/Cart/Cart";
 import * as qs from "query-string";
-import shoppingImg from "../assets/img/Shopping.svg"
+import shoppingImg from "../assets/img/shopping.svg"
+import dairyProducts from "../assets/img/dairy.jpg"
 
 const categories = [
   {
@@ -118,10 +119,46 @@ const Home = (props) => {
                 <p>
                   Ibhunga store is one of the cheapest shop selling a variety of products. You can shop anything from our catalogue, and they will be delivered to you instantly. Delivery time is same day to orders placed before 3pm. 
                 </p>
-                <button type="button" className="main-btn" onClick={() => updateComponent("all")}>Shop Now</button>
+                <button type="button" className="main-btn" onClick={() => updateComponent("all")}>Shop Now</button> <button type="button">Create account</button>
               </div>
               <div className="img-side">
                 <img src={shoppingImg} alt="Shopping image" />
+              </div>
+            </div>
+            <div className="featured-categories">
+              <div className="header">
+                <h2>Featured Categories</h2>
+                <p>We have more than 100 products available, here are our categories.</p>
+              </div>
+              <div className="category-container">
+                <div className="category">
+                  <img src={dairyProducts} alt="Dairy Products" />
+                  <h3>Diary Products</h3>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  </p>
+                </div>
+                <div className="category">
+                  <img src={dairyProducts} alt="Dairy Products" />
+                  <h3>Diary Products</h3>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  </p>
+                </div>
+                <div className="category">
+                  <img src={dairyProducts} alt="Dairy Products" />
+                  <h3>Diary Products</h3>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  </p>
+                </div>
+                <div className="category">
+                  <img src={dairyProducts} alt="Dairy Products" />
+                  <h3>Diary Products</h3>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  </p>
+                </div>
               </div>
             </div>
             

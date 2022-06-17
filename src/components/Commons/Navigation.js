@@ -31,6 +31,9 @@ const Navigation = ({ setComponentDisplay }) => {
         <span className="nav-item" onClick={() => updateComponent("orders")}>
           <a className="nav-link">My Orders</a>
         </span>
+        <span className="nav-item">
+          <a className="nav-link">Contacts</a>
+        </span>
         <span className="nav-item" onClick={() => updateComponent("cart")}>
           <a className="nav-link">Cart</a>
         </span>{" "}
@@ -56,6 +59,9 @@ const Navigation = ({ setComponentDisplay }) => {
             <div className="dropdown-divider" />
             <a className="dropdown-item">Something else here</a>
           </div>
+        </span>
+        <span className="nav-item action-btn">
+          <button type="button" className="main-btn">Shop Now</button>
         </span>
       </div>
     </nav>
