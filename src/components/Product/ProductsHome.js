@@ -4,25 +4,18 @@ import Products from "./Products";
 
 const ProductsHome = ({ categories, category, updateCategory }) => {
   return (
-    <div className="container">
-      <br></br>
-      <div className="row text-center">
-        <input
-          className="form-control col-sm-7"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        />
-        <div>&nbsp;</div>
-        <button className="btn btn-success btn-md">search...</button>
+    <div className="products-home">
+      <div className="side-bar">
+        <Categories updateCategory={updateCategory} categories={categories} />
       </div>
-      <div className="row">
-        <div className="col-sm-3">
-          <br></br>
-          <Categories updateCategory={updateCategory} categories={categories} />
-        </div>{" "}
-        <div className="col-sm-9">
-          <h2>
+      <div className="main-side">
+        <div className="action-part">
+          <div className="search">
+            <input className="form-control" type="search" placeholder="Search" aria-label="Search" />
+            <button className="btn btn-success btn-md">search...</button>
+          </div>
+        </div>
+        <h2>
             <b>
               {
                 categories[
@@ -32,7 +25,6 @@ const ProductsHome = ({ categories, category, updateCategory }) => {
             </b>
           </h2>
           <Products categories={categories} category={category} />
-        </div>
       </div>
     </div>
   );

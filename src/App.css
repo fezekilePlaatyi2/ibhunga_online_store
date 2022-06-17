@@ -55,10 +55,6 @@ input::placeholder {
   color: #b3b3b3;
 }
 
-.product-col {
-  padding: 4%;
-}
-
 .product-card-small {
   width: 250px;
   height: 350px;
@@ -197,4 +193,16 @@ input::placeholder {
 .login-page .other-links p a,
 .signup-page .other-links p a {
   color: var(--primary-color)
+}
+
+.products-home {
+  display: grid;
+  grid-template-columns: 20vw auto;
+  grid-template-rows: auto;
+  column-gap: 2em;
+  padding: 4em 0;
+}
+
+.products-home .main-side {
+  padding: 0 3em;
 }
