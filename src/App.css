@@ -1,11 +1,11 @@
 :root {
-  --primary-color: #FFA500;
+  --primary-color: #ffa500;
   --transition: all 0.65s ease-in-out;
   --dark-color: #1a1a1a;
 }
 
 * {
-  font-family: 'roboto', sans-serif;
+  font-family: "roboto", sans-serif;
 }
 
 button {
@@ -30,12 +30,37 @@ button:hover {
 
 #navigation_bar {
   padding: 1em 3em;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.navbar-brand {
+  background: linear-gradient(180deg, #fccb6f, var(--primary-color) 96.71%);
+  display: inline-block;
+  padding: 1%;
+  padding-top: 5%;
+  height: 130px;
+  position: absolute;
+  font-weight: bolder;
+  z-index: +1004;
+}
+
+#navigation_bar a:link {
+  color: white;
+}
+#navigation_bar a:visited {
+  color: white;
+}
+#navigation_bar a:hover {
+  color: #f7f7f7;
+}
+#navigation_bar a:active {
+  color: white;
 }
 
 #navigation_bar .nav-link {
-    font-size: 18px;
-    color: var(--dark-color) !important;
-    cursor: pointer;
+  font-size: 18px;
+  color: var(--dark-color) !important;
+  cursor: pointer;
 }
 
 #navigation_bar .action-btn {
@@ -192,7 +217,7 @@ input::placeholder {
 
 .login-page .other-links p a,
 .signup-page .other-links p a {
-  color: var(--primary-color)
+  color: var(--primary-color);
 }
 
 .products-home {
@@ -205,4 +230,51 @@ input::placeholder {
 
 .products-home .main-side {
   padding: 0 3em;
+}
+
+.cart .cart-container {
+  height: 70vh;
+  background-color: white;
+  align-items: center;
+  padding: 2em 6em;
+  column-gap: 2em;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+}
+
+.cart ul {
+  list-style: none;
+  margin-left: -25px;
+  margin-right: 12px;
+}
+
+.cart li {
+  margin-top: 1.5%;
+}
+.cart .cart-item {
+  padding: 1em 3em;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.cart .instock-placeholder {
+  color: green;
+}
+
+.cart .remove-from-cart {
+  position: absolute;
+  right: 2%;
+  bottom: 1%;
+  color: rgb(188, 188, 188);
+}
+
+.cart .remove-from-cart-text {
+  color: rgb(188, 188, 188);
+  font-size: 12px;
+}
+
+.cart a {
+  color: var(--primary-color);
 }

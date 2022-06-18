@@ -9,7 +9,7 @@ const Navigation = ({ setComponentDisplay }) => {
   return (
     <nav className="navbar navbar-expand-lg" id="navigation_bar">
       <a className="navbar-brand navbar-inverse" href="/">
-        IBhunga Store
+        IBhunga
       </a>
       <button
         className="navbar-toggler"
@@ -55,13 +55,15 @@ const Navigation = ({ setComponentDisplay }) => {
             >
               Sign out
             </a>
-            <a className="dropdown-item">Another action</a>
+            <a className="dropdown-item">My Profile</a>
             <div className="dropdown-divider" />
-            <a className="dropdown-item">Something else here</a>
+            <a className="dropdown-item">Get Help</a>
           </div>
         </span>
         <span className="nav-item action-btn">
-          <button type="button" className="main-btn">Shop Now</button>
+          <button type="button" className="main-btn">
+            Shop Now
+          </button>
         </span>
       </div>
     </nav>
