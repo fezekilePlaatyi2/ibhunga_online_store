@@ -278,3 +278,40 @@ input::placeholder {
 .cart a {
   color: var(--primary-color);
 }
+
+.orders .orders-container {
+  height: 70vh;
+  width: 70%;
+  background-color: white;
+  align-items: center;
+  padding: 2em 6em;
+  column-gap: 2em;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  margin: auto;
+}
+
+.orders ul {
+  list-style: none;
+  margin-left: -25px;
+  margin-right: 12px;
+}
+
+.orders li {
+  margin-top: 1.5%;
+}
+
+.orders .order-item {
+  padding: 1em 3em;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.orders .historic-order-actions {
+  position: absolute;
+  right: 2%;
+  bottom: 1%;
+  color: rgb(188, 188, 188);
+}
