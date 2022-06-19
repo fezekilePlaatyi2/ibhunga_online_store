@@ -6,25 +6,27 @@ const ProductsHome = ({ categories, category, updateCategory }) => {
   return (
     <div className="products-home">
       <div className="side-bar">
-        <Categories updateCategory={updateCategory} categories={categories} />
+        <Categories updateCategory={updateCategory} category={category} categories={categories} />
       </div>
       <div className="main-side">
         <div className="action-part">
           <div className="search">
-            <input className="form-control" type="search" placeholder="Search" aria-label="Search" />
-            <button className="btn btn-success btn-md">search...</button>
+          <div class="input-group mb-3">
+            <input type="search" class="form-control" placeholder="Enter item name" aria-label="Enter item name" aria-describedby="button-addon2"/>
+            <button class="btn" type="button" id="button-addon2">Find</button>
+          </div>
           </div>
         </div>
-        <h2>
-            <b>
+        <div className="products">
+        <h2 className="category-name">
               {
                 categories[
                   categories.findIndex((element) => element.Index === category)
                 ].Name
               }
-            </b>
           </h2>
           <Products categories={categories} category={category} />
+        </div>
       </div>
     </div>
   );

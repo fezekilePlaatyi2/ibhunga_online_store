@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import dairyProducts from "../../assets/img/dairy.jpg";
 
 const Product = ({ product }) => {
   if (product.ItemId === "NotValid") {
@@ -18,12 +19,16 @@ const Product = ({ product }) => {
 
   return (
     <>
-      Single Product
-      <h3> {product.ItemName} </h3>
-      <br></br>
-      <h4>
-        <b>Price: R{product.ItemPrice}</b>
-      </h4>
+      <div className="single-product">
+        <div className="img-container">
+        <img src={dairyProducts} alt="Dairy Products" />
+        </div>
+        <h3> {product.ItemName} </h3>
+        <p className="product-desc">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics</p>
+        <h4>
+          <b>Price: R{product.ItemPrice}</b>
+        </h4>
+      </div>
     </>
   );
 };

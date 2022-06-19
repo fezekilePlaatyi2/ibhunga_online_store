@@ -13,7 +13,7 @@ const Products = ({ categories, category }) => {
 
   return (
     <>
-      <div className="row">
+      <div className="products-part">
         {products.map((product, index) => (
           <div className="product-col" key={index}>
             <Card product={product} />
