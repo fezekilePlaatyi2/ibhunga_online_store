@@ -54,8 +54,8 @@ module.exports = {
 
       let stringToHash = makeHash(postData);
       postData["HashCheck"] = stringToHash;
-      var urlPath = "/api/MerchantApiV1/PostPaymentRequest";
-      var url = "i-pay.co.za";
+      var urlPath = "/PostPaymentRequest";
+      var url = "stagingapi.ozow.com";
 
       var options = {
         host: url,
@@ -67,7 +67,7 @@ module.exports = {
           Accept: "application/json",
         },
       };
-
+ 
       var postRequest = https.request(options, function (res) {
         res.setEncoding("utf8");
         res.on("data", function (chunk) {

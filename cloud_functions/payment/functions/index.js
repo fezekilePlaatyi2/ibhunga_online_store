@@ -3,71 +3,23 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 app.use(cors());
-
-app.set("view engine", "ejs");
-app.set("views", __dirname + "/views");
+const port = 3000;
 app.use(express.json());
-app.use(express.static(__dirname + "/public"));
 var Payment = require("./Payment");
 
-const PORT = 7000;
-
-app.post("/paymentCheckout", (req, res) => {
-  paymentCheckout(req, res);
-});
-
-app.get("/paymentNotifications", (req, res) => {
-  console.log(`Payment notification ${req} ${res}`);
-  res.send({ Results: req });
-});
-
-app.get("/paymentSuccess", (req, res) => {
-  console.log(`Payment Success ${req} ${res}`);
-  res.send({ Results: req });
-});
-
-app.get("/paymentCancelation", (req, res) => {
-  console.log(`Payment Cancelation ${req} ${res}`);
-  res.send({ Results: req });
-});
-
-app.get("/paymentError", (req, res) => {
-  console.log(`Payment Error ${req} ${res}`);
-  res.send({ Results: req });
-});
-
-app.post("/paymentNotifications", (req, res) => {
-  console.log(`Payment notification ${req} ${res}`);
-  res.send({ Results: req });
-});
-
-app.post("/paymentSuccess", (req, res) => {
-  console.log(`Payment Success ${req} ${res}`);
-  res.send({ Results: req });
-});
-
-app.post("/paymentCancelation", (req, res) => {
-  console.log(`Payment Cancelation ${req} ${res}`);
-  res.send({ Results: req });
-});
-
-app.post("/paymentError", (req, res) => {
-  console.log(`Payment Error ${req} ${res}`);
-  res.send({ Results: req });
-});
-
-app.listen(PORT, () => {
-  console.log(`Server started at port - ${PORT}`);
-});
-
-const paymentCheckout = (req, res) => {
+app.post("/payment-checkout", (req, res) => {
   Payment.paymentCheckout(req, res)
-    .then((result) => {
-      res.send(jsonRes);
+    .then((results) => {
+      res.send(results);
     })
     .catch((error) => {
-      res.status(500).send(error);
+      console.log(error);
+      res.send("error");
     });
-};
+});
 
-exports.app = functions.https.onRequest(app);
+app.listen(port, () => {
+  console.log(`APP listening on port ${port}`);
+});
+
+exports.whatsapp_channel = functions.https.onRequest(app);
