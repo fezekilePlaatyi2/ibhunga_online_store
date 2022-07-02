@@ -8,12 +8,12 @@ const Navigation = ({ setComponentDisplay, cartProducts, setCartProducts }) => {
 
   return (
     <nav className="navbar navbar-expand-lg" id="navigation_bar">
-      <a
+      <h2
         className="navbar-brand navbar-inverse"
         onClick={() => updateComponent("all")}
       >
         IBhunga
-      </a>
+      </h2>
       <button
         className="navbar-toggler"
         type="button"

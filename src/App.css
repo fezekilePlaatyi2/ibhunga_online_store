@@ -44,7 +44,7 @@ button:hover {
   z-index: +1004;
 }
 
-#navigation_bar a:link {
+#navigation_bar h2 {
   color: white;
 }
 #navigation_bar a:visited {
