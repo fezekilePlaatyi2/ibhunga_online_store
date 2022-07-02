@@ -7,52 +7,14 @@ import Orders from "../components/Orders/Orders";
 import * as qs from "query-string";
 import shoppingImg from "../assets/img/shopping.svg";
 import dairyProducts from "../assets/img/dairy.jpg";
+import Store from "../services/Store";
+import { ToastContainer, toast } from "react-toast";
 
-const categories = [
-  {
-    Index: "diary",
-    Name: "Diary Products",
-    Items: [
-      {
-        ItemId: "Yogurt1",
-        ItemName: "Yogurt 1",
-        ItemPrice: 45.70,
-        InStockQuantity: 30,
-        ProductDesc: "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
-      },
-      {
-        ItemId: "Yogurt2",
-        ItemName: "Yogurt 2",
-        ItemPrice: 43.99,
-        InStockQuantity: 23,
-        ProductDesc: "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
-      },
-    ],
-  },
-  {
-    Index: "drinks",
-    Name: "Drinks",
-    Items: [
-      {
-        ItemId: "EnegryDrink1",
-        ItemName: "Enegry Drink 1",
-        ItemPrice: 11.0,
-        InStockQuantity: 12,
-        ProductDesc: "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
-      },
-      {
-        ItemId: "EnegryDrink2",
-        ItemName: "Enegry Drink  2",
-        ItemPrice: 11.0,
-        InStockQuantity: 47,
-        ProductDesc: "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
-      },
-    ],
-  },
-];
-
-const Home = (props) => {
+const Home = () => {
   const parsed = qs.parse(window.location.search);
+  const store = new Store();
+  const [categories, setCategories] = useState([]);
+  const [cartProducts, setCartProducts] = useState([]);
   const [component, setComponentDisplay] = useState("");
   const [category, updateCategory] = useState("");
   const [productOnView, setProductOnView] = useState({});
@@ -63,7 +25,66 @@ const Home = (props) => {
   };
 
   useEffect(() => {
-    updateCategory(categories[0].Index);
+    categories.length > 0 && updateCategory(categories[0].Index);
+  }, [categories]);
+
+  useEffect(async () => {
+    try {
+      const productCategoriesResponse = await store.getAllCategories();
+      const productCategories = productCategoriesResponse.docs.map((doc) => {
+        return {
+          Index: doc.id,
+          Name: doc.data().Name,
+        };
+      });
+      setCategories(productCategories);
+    } catch (e) {
+      console.log(e);
+      toast("An error occured while proccessing your request");
+    }
+  }, []);
+
+  useEffect(() => {
+    categories.forEach((category, index) => {
+      store.getProductsByCategoriesId(category.Index, {
+        next: (querySnapshot) => {
+          const categoryProductsList = querySnapshot.docs.map((docSnapshot) => {
+            return {
+              ItemId: docSnapshot.id,
+              ItemName: docSnapshot.data().name,
+              ItemPrice: docSnapshot.data().price,
+              InStockQuantity: docSnapshot.data().inStockQuantity,
+              ProductDesc: docSnapshot.data().productDesc,
+              pictures: docSnapshot.data().pictures,
+            };
+          });
+
+          let tempCategoryProducts = categories;
+
+          const categoryIndex = categories.findIndex(
+            (myCategory) => myCategory.Index === category.Index
+          );
+
+          if (categoryIndex !== -1) {
+            tempCategoryProducts[categoryIndex].Items = categoryProductsList;
+          }
+
+          querySnapshot.docChanges().forEach((change) => {
+            // console.log((change.doc.id, change.doc.data()))
+            if (change.type === "modified") {
+              console.log("Modified document: ", change.doc.data());
+            }
+            if (change.type === "removed") {
+              console.log("Removed document: ", change.doc.data());
+            }
+          });
+        },
+        error: (error) => {
+          console.log(error);
+          toast("Error getting products");
+        },
+      });
+    });
   }, [categories]);
 
   useEffect(() => {
@@ -100,15 +121,29 @@ const Home = (props) => {
             updateCategory={updateCategory}
             category={category}
             categories={categories}
+            cartProducts={cartProducts}
+            setCartProducts={setCartProducts}
           />
         );
       }
       case "single": {
-        return <Product product={productOnView} />;
+        return (
+          <Product
+            product={productOnView}
+            cartProducts={cartProducts}
+            setCartProducts={setCartProducts}
+          />
+        );
       }
 
       case "cart": {
-        return <Cart />;
+        return (
+          <Cart
+            setComponentDisplay={setComponentDisplay}
+            cartProducts={cartProducts}
+            setCartProducts={setCartProducts}
+          />
+        );
       }
 
       case "orders": {
@@ -133,7 +168,7 @@ const Home = (props) => {
                   onClick={() => updateComponent("all")}
                 >
                   Shop Now
-                </button>{" "}
+                </button>
                 <button type="button">Create account</button>
               </div>
               <div className="img-side">
@@ -195,8 +230,15 @@ const Home = (props) => {
 
   return (
     <>
-      <Navigation setComponentDisplay={setComponentDisplay} />
-      {componentDisplay()}
+      <ToastContainer />
+      <div className="navigation">
+        <Navigation
+          setComponentDisplay={setComponentDisplay}
+          cartProducts={cartProducts}
+          setCartProducts={setCartProducts}
+        />{" "}
+      </div>
+      <div className="main-content">{componentDisplay()}</div>
     </>
   );
 };

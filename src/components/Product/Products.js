@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Card from "./Card";
 
-const Products = ({ categories, category }) => {
+const Products = ({ categories, category, cartProducts, setCartProducts }) => {
   const [products, updateProducts] = useState([]);
 
   useEffect(() => {
@@ -16,7 +16,12 @@ const Products = ({ categories, category }) => {
       <div className="products-part">
         {products.map((product, index) => (
           <div className="product-col" key={index}>
-            <Card product={product} />
+            <Card
+              product={product}
+              category={category}
+              cartProducts={cartProducts}
+              setCartProducts={setCartProducts}
+            />
           </div>
         ))}
       </div>

@@ -1,14 +1,17 @@
 import React, { useContext } from "react";
 import firebaseConfig from "../../config.js";
 
-const Navigation = ({ setComponentDisplay }) => {
+const Navigation = ({ setComponentDisplay, cartProducts, setCartProducts }) => {
   const updateComponent = (componentName) => {
     setComponentDisplay(componentName);
   };
 
   return (
     <nav className="navbar navbar-expand-lg" id="navigation_bar">
-      <a className="navbar-brand navbar-inverse" href="/">
+      <a
+        className="navbar-brand navbar-inverse"
+        onClick={() => updateComponent("all")}
+      >
         IBhunga
       </a>
       <button
@@ -31,12 +34,12 @@ const Navigation = ({ setComponentDisplay }) => {
         <span className="nav-item" onClick={() => updateComponent("orders")}>
           <a className="nav-link">My Orders</a>
         </span>
-        <span className="nav-item">
-          <a className="nav-link">Contacts</a>
-        </span>
         <span className="nav-item" onClick={() => updateComponent("cart")}>
-          <a className="nav-link">Cart</a>
-        </span>{" "}
+          <a className="nav-link">({cartProducts.length})Cart</a>
+        </span>
+        <span className="nav-item">
+          <a className="nav-link">Contact</a>
+        </span>
         <span className="nav-item dropdown">
           <a
             className="nav-link dropdown-toggle"
@@ -61,7 +64,11 @@ const Navigation = ({ setComponentDisplay }) => {
           </div>
         </span>
         <span className="nav-item action-btn">
-          <button type="button" className="main-btn">
+          <button
+            type="button"
+            className="main-btn"
+            onClick={() => setComponentDisplay("all")}
+          >
             Shop Now
           </button>
         </span>

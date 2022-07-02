@@ -1,28 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import dairyProducts from "../../assets/img/dairy.jpg";
-const itemsInOrder = [
-  {
-    ItemName: "Cheddar Cheese 900 g",
-    ItemDescription:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
-    InStock: "10 units",
-    ItemImageUrl: dairyProducts,
-    Quantity: 2,
-    ItemPrice: 1212.23,
-  },
-  {
-    ItemName: "Fresh & Creamy Mushroom Soup",
-    ItemDescription:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
-    InStock: "10 units",
-    ItemImageUrl: dairyProducts,
-    Quantity: 2,
-    ItemPrice: 1212.23,
-  },
-];
 
-const Cart = () => {
+const Cart = ({ setComponentDisplay, cartProducts, setCartProducts }) => {
   const [paymentButtonDisabled, setPaymentButtonDisabled] = useState(false);
 
   const prepareCheckout = () => {
@@ -56,6 +36,44 @@ const Cart = () => {
       });
   };
 
+  const addToWishList = (item) => {
+    alert("You had added item to Wishlist.");
+    removeFromCart(item);
+  };
+
+  const removeFromCart = (item) => {
+    let tempCart = [...cartProducts];
+    const index = tempCart.findIndex((myItem) => myItem.ItemId === item.ItemId);
+
+    if (index !== -1) {
+      tempCart.splice(index, 1);
+      setCartProducts(tempCart);
+    }
+
+    if (tempCart.length === 0) {
+      setComponentDisplay("all");
+      alert("You had removed everything from cart.");
+    }
+  };
+
+  if (cartProducts.length === 0)
+    return (
+      <div className="cart">
+        <div className="cart-container">
+          <div className="container">
+            <p>The Cart is empty!</p>
+            <button
+              type="button"
+              className="main-btn"
+              onClick={() => setComponentDisplay("all")}
+            >
+              Shop Now
+            </button>{" "}
+          </div>
+        </div>
+      </div>
+    );
+
   return (
     <div className="cart">
       <div className="cart-container">
@@ -63,42 +81,53 @@ const Cart = () => {
           <h3>Items On Order</h3>
           <br></br>
           <ul>
-            {itemsInOrder.map((item) => (
-              <li>
+            {cartProducts.map((item, index) => (
+              <li key={index}>
                 <div className="row">
                   <div className="col-sm-12 cart-item">
                     <div className="row">
                       <div className="col-sm-7">
                         <h4>{item.ItemName}</h4>
                         <p>
-                          {item.ItemDescription}
+                          {item.ProductDesc}
                           <a href="#" className="cart-item-more-details">
                             more...
                           </a>
                         </p>
                         <h6>Price: R{item.ItemPrice}</h6>
-                        <h6 className="instock-placeholder">
-                          <b>Instock: Yes</b>
+                        <h6 className="InStockQuantity-placeholder">
+                          <b>
+                            InStockQuantity:{" "}
+                            {item.InStockQuantity > 0 ? "Yes" : "No"}
+                          </b>
                         </h6>
                       </div>
                       <div className="col-sm-5">
                         <img
-                          src={item.ItemImageUrl}
+                          src={item.pictures[0]}
                           height="150"
-                          alt="Dairy Products"
+                          alt="Product Picture"
                         />
                       </div>
                     </div>
                     <div className="remove-from-cart">
-                      <i class="fa fa-trash"></i>
+                      <i
+                        className="fa fa-trash"
+                        onClick={() => removeFromCart(item)}
+                      >
+                        {"\u00A0"}
+                        <small className="remove-from-cart-text">remove</small>
+                      </i>
                       {"\u00A0"}
-                      <small className="remove-from-cart-text">remove</small>
                       {"\u00A0"}
-                      {"\u00A0"}
-                      <i class="fa fa-heart"></i>
-                      <small className="remove-from-cart-text">
-                        {"\u00A0"} move to wishlist
-                      </small>
+                      <i
+                        className="fa fa-heart"
+                        onClick={() => addToWishList(item)}
+                      >
+                        <small className="remove-from-cart-text">
+                          {"\u00A0"} move to wishlist
+                        </small>
+                      </i>
                     </div>
                   </div>
                 </div>
@@ -108,8 +137,8 @@ const Cart = () => {
 
           <div className="row">
             <div className="col-sm-12">
-              <div class="form-group">
-                <label for="delivery-address">
+              <div className="form-group">
+                <label htmlFor="delivery-address">
                   <b>Delivery Address</b>
                 </label>
                 <textarea
@@ -121,7 +150,7 @@ const Cart = () => {
           </div>
           <div className="row">
             <div className="col-sm-12">
-              <div class="form-group">
+              <div className="form-group">
                 <textarea
                   className="form-control"
                   placeholder="Add any notes(optional)"
@@ -131,7 +160,7 @@ const Cart = () => {
           </div>
           <div className="row">
             <div className="col-sm-12">
-              <div class="form-group">
+              <div className="form-group">
                 <span className="nav-item action-btn">
                   <button
                     type="button"

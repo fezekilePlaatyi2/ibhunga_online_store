@@ -41,12 +41,12 @@ const Orders = () => {
                       <div className="col-sm-4">
                         <div className="historic-order-actions">
                           <div className="remove-from-cart">
-                            <i class="fa fa-close"></i>
+                            <i className="fa fa-close"></i>
                             {"\u00A0"}
                             <small>hide</small>
                             {"\u00A0"}
                             {"\u00A0"}
-                            <i class="fa fa-repeat"></i>
+                            <i className="fa fa-repeat"></i>
                             <small>{"\u00A0"}re-order</small>
                           </div>
                         </div>
