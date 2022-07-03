@@ -303,7 +303,7 @@ input::placeholder {
 .product-card .img-container img {
   width: 100%;
   height: 200px;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 15px;
 }
 
@@ -388,6 +388,19 @@ input::placeholder {
 
 .cart a {
   color: var(--primary-color);
+}
+
+.remove-from-cart {
+  margin-top: 1em;
+}
+
+.remove-from-cart i {
+  margin-right: 0.65em;
+  cursor: pointer;
+}
+
+.remove-from-cart i:last-child {
+  margin-right: 0;
 }
 
 .orders .orders-container {

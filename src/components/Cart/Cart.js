@@ -128,7 +128,7 @@ const Cart = ({ setComponentDisplay, cartProducts, setCartProducts }) => {
                         <h6>Price: R{parseFloat(item.ItemPrice).toFixed(2)}</h6>
                         <h6 className="InStockQuantity-placeholder">
                           <b>
-                            InStockQuantity:{" "}
+                            In Stock Quantity:{" "}
                             {item.InStockQuantity > 0 ? "Yes" : "No"}
                           </b>
                         </h6>
@@ -178,19 +178,37 @@ const Cart = ({ setComponentDisplay, cartProducts, setCartProducts }) => {
                 <label htmlFor="delivery-address">
                   <b>Delivery Address</b>
                 </label>
-                <textarea
-                  className="form-control"
-                  placeholder="Add address here..."
-                ></textarea>
-              </div>{" "}
-            </div>{" "}
+                <input type="street" name="street" id="street" className="form-control" placeholder="Street (e.g. 114B Murray Street)" />
+                <input type="text" name="line_2" id="line_2" className="form-control" placeholder="Line 2 (Optional)" />
+                <input type="text" name="city" id="city" className="form-control" placeholder="City (e.g. Kokstad)" />
+                <div className="row">
+                  <div className="col-sm-7">
+                    <select name="province" className="form-control">
+                      <option value="" selected disabled>~ Select Province ~</option>
+                      <option value="EC">Eastern Cape</option>
+                      <option value="WC">Western Cape</option>
+                      <option value="KZN">Kwa-Zulu Natal</option>
+                      <option value="MP">Mpumalanga</option>
+                      <option value="GP">Gauteng</option>
+                      <option value="NW">North West</option>
+                      <option value="FS">Free State</option>
+                      <option value="LP">Limpopo</option>
+                      <option value="NC">Northern Cape</option>
+                    </select>
+                  </div>
+                  <div className="col-sm-5">
+                    <input type="number" name="zip_code" id="zip_code" className="form-control" placeholder="Zip Code" />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div className="row">
             <div className="col-sm-12">
               <div className="form-group">
                 <textarea
                   className="form-control"
-                  placeholder="Add any notes(optional)"
+                  placeholder="Note (optional)"
                 ></textarea>
               </div>
             </div>
@@ -205,7 +223,7 @@ const Cart = ({ setComponentDisplay, cartProducts, setCartProducts }) => {
                     disabled={paymentButtonDisabled}
                     onClick={() => prepareCheckout()}
                   >
-                    Procceed to checkout...
+                    Procceed to checkout (R {parseFloat(totalPrice()).toFixed(2)})
                   </button>
                 </span>
               </div>

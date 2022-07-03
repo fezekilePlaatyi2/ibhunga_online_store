@@ -64,20 +64,20 @@ const Card = ({ product, category, cartProducts, setCartProducts }) => {
         >
           {product.InStockQuantity}
         </span>
-
-        <br />
-        <input
-          type="number"
-          min="0"
-          id="quantity"
-          onChange={(e) => handledChangeQuantity(e)}
-        />
-        <br />
+        <div className="row">
+          <div className="col-sm-6">
+              <input
+                type="number"
+                min="1"
+                className="form-control mb-2"
+                id="quantity"
+                onChange={(e) => handledChangeQuantity(e)}
+              />
+          </div>
+        </div>
         <button
           type="button"
-          className={`add-to-cart ${
-            addToCarBtnDisabled && product.InStockQuantity > 0 ? "main-btn" : ""
-          }`}
+          className="add-to-cart main-btn"
           onClick={() => addToCart(product)}
         >
           <i className="fa fa-shopping-cart"></i>
